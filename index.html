@@ -1,0 +1,46 @@
+<html>
+<body>
+    <canvas id="placeholderCanvas" width="800px" height="800px"></canvas>
+
+    <script>
+
+        var zdroje = ["3.jpg", "2.jpg", "2.jpg"];
+        var xcord = [0, 80, 80];
+        var ycord = [0, 80, 240];
+
+        mergeImg(zdroje, xcord, ycord); 
+
+        function mergeImg(sources, x, y) {
+
+            var canvas = document.getElementById("placeholderCanvas");
+            var context = canvas.getContext("2d");
+
+            var index = 0;
+
+            
+            sources.forEach(addImg);
+
+            function addImg() {
+
+                var img = new Image();
+                img.src = sources[index++];
+
+                console.log(x[index]);
+                console.log(y[index]);
+
+                var xAct = x[index-1];
+                var yAct = y[index-1];
+
+                img.onload = function(){
+                    context.drawImage(img, xAct, yAct);
+                }
+
+               
+            }
+        }
+
+    </script>
+
+</body>
+</html>
+
